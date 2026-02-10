@@ -32,6 +32,9 @@ main()
 
 async function main() {
   // await mongoose.connect(MONGO_URL);
+  console.log("MONGO_URL:", process.env.MONGO_URL);
+console.log("MAP_TOKEN:", process.env.MAP_TOKEN);
+
   await mongoose.connect(DB_URL);
 }
 
@@ -103,8 +106,6 @@ app.use((req, res, next) => {
   console.log("<<========================END========================>>");
   next();
 });
-console.log("MONGO_URL:", process.env.MONGO_URL);
-console.log("MAP_TOKEN:", process.env.MAP_TOKEN);
 
 app.use("/", userRouter);
 app.use("/profile", profileRouter);
