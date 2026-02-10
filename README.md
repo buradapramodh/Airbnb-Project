@@ -2,8 +2,8 @@
 
 A full-stack Airbnb-like rental booking platform that allows users to browse, create, edit, and manage property listings with location-based features, authentication, and image uploads.
 
-🔗 Live Demo: (add your Render live link here)
-🔗 GitHub Repo: (this repo)
+🔗 Live Demo: (https://airbnb-project-5-a55v.onrender.com)
+🔗 GitHub Repo: (https://github.com/buradapramodh/Airbnb-Project)
 🚀 Features
 
 🔐 User Authentication (Signup / Login / Logout)
