@@ -1,165 +1,32 @@
 <link rel="stylesheet" href="/css/show.css">
-<link rel="stylesheet" href="/css/delete-confirm.css">
-<link rel="stylesheet" href="/css/button-style.css">
 
 <% layout("/layouts/boilerplate") %>
 
-<style>
-  @media (max-width:768px) {
-    .alert {
-      left: 17%;
-    }
-  }
-</style>
-
-<!-- ✅ MAPBOX TOKEN FIX (VERY IMPORTANT) -->
 <script>
   const mapToken = "<%= MAP_TOKEN %>";
-  const listing = JSON.parse(`<%- JSON.stringify(listing) %>`);
+  const listing = <%- JSON.stringify(listing) %>;
 </script>
 
-<div class="row mt-3 show-main">
-  <div class="show-body">
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h3><%= listing.title %></h3>
+    <img src="<%= listing.image.url %>" class="img-fluid mb-3">
 
-    <div class="col-8 offset-2">
-      <h3 class="ms-3"><%= listing.title %></h3>
-    </div>
-
-    <div class="card col-8 offset-2 show-card listing-card">
-      <div class="show-card-img">
-        <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
-      </div>
-
-      <div class="card-body ms-1">
-        <p class="card-text">
-          <b>Owned by :</b>
-          <b><i>@<%= listing.owner?.username %></i></b>
-        </p>
-
-        <p class="card-text">
-          <b>Description :</b> <%= listing.description %>
-        </p>
-
-        <p class="card-text">
-          <b>Price :</b> &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-        </p>
-
-        <p class="card-text">
-          <b>Country :</b>
-          <%= listing.location %>, <%= listing.country %>
-          <i class="fa-solid fa-location-dot" style="margin-right: 1rem; font-size: 1.25rem;"></i>
-        </p>
-
-        <p class="card-text">
-          <b>Category :</b>
-          <%= listing.category.slice(",").join(", ") %>
-        </p>
-      </div>
-    </div>
-
-    <!-- ===== OWNER ACTIONS ===== -->
-    <% if (currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
-      <div class="btns offset-2">
-        <div class="btns-edit">
-          <a href="/listings/<%= listing._id %>/edit"
-             class="btn btn-dark col-1 offset-3 edit-btn styleBtn">
-             Edit
-          </a>
-
-          <form method="post"
-                action="/listings/<%= listing._id %>?_method=DELETE">
-            <button type="reset"
-                    class="btn btn-danger offset-4 del-btn styleBtn"
-                    id="delete-confirm">
-              Delete
-            </button>
-
-            <div class="fnx-fixed-dis">
-              <div class="delete-fnx" style="display: none;">
-                <p>I want to delete this listing.</p>
-                <p>"<%= listing.title %>"</p>
-                <div class="conf cancle-confirm">Cancel</div>
-                <button class="conf delete-confirm">Confirm</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    <% } %>
-
-    <!-- ===== REVIEWS ===== -->
-    <hr class="mt-2">
-    <div class="col-8 offset-2">
-
-      <% if (currUser) { %>
-        <p><b>Leave a Review <i class="fa-regular fa-pen-to-square"></i></b></p>
-
-        <form method="post"
-              action="/listings/<%= listing._id %>/reviews"
-              class="needs-validation"
-              novalidate>
-
-          <div class="mt-3">
-            <label class="form-label">Rating</label>
-            <fieldset class="starability-slot">
-              <input type="radio" class="input-no-rate" name="review[rating]" value="1" checked />
-              <input type="radio" name="review[rating]" value="1"><label>1 star</label>
-              <input type="radio" name="review[rating]" value="2"><label>2 stars</label>
-              <input type="radio" name="review[rating]" value="3"><label>3 stars</label>
-              <input type="radio" name="review[rating]" value="4"><label>4 stars</label>
-              <input type="radio" name="review[rating]" value="5"><label>5 stars</label>
-            </fieldset>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Comment</label>
-            <textarea class="form-control"
-                      name="review[comment]"
-                      rows="3"
-                      required></textarea>
-            <div class="invalid-feedback">
-              Please add some comments for review
-            </div>
-          </div>
-
-          <button class="btn btn-success mb-3 styleBtn">Submit</button>
-        </form>
-      <% } %>
-
-      <% if (listing.reviews.length > 0) { %>
-        <p><b>All Reviews</b></p>
-        <div class="row m-1 review-main">
-          <% for (const review of listing.reviews) { %>
-            <div class="card col-lg-5 review-lg">
-              <div class="card-body review-card">
-                <p class="starability-result" data-rating="<%= review.rating %>"></p>
-                <h5>@<%= review.author.username %> :</h5>
-                <p class="review-comment"><%= review.comment %></p>
-              </div>
-
-              <% if (currUser && currUser._id.equals(review.author._id)) { %>
-                <form method="post"
-                      action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </form>
-              <% } %>
-            </div>
-          <% } %>
-        </div>
-      <% } %>
-    </div>
-
-    <!-- ===== MAP ===== -->
-    <div class="col-8 offset-2 mapImg">
-      <p><b>Where you'll be <i class="fa-solid fa-location-crosshairs"></i></b></p>
-      <div id="map" style="height: 400px;"></div>
-    </div>
-
+    <p><b>Location:</b> <%= listing.location %>, <%= listing.country %></p>
+    <p><b>Price:</b> ₹<%= listing.price %></p>
   </div>
+
+  <% if (listing.geometry) { %>
+    <div class="col-8 offset-2">
+      <h5>Where you’ll be</h5>
+      <div id="map" style="height:400px;border-radius:10px;"></div>
+    </div>
+  <% } else { %>
+    <div class="col-8 offset-2">
+      <p class="text-danger">Location map not available</p>
+    </div>
+  <% } %>
 </div>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 <script src="/js/map.js"></script>
-<script src="/js/delete-confirm.js"></script>
