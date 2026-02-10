@@ -18,6 +18,8 @@ router.get("/filterbtn", listingController.filterbtn); //FilterButton Route-----
 
 router.get("/search", wrapAsync(listingController.search)); //SEARCH Route-------------
 
+router.get("/filters", wrapAsync(listingController.advancedFilter));
+
 router
   .route("/")
   .get(wrapAsync(listingController.index)) //Index Route----------
