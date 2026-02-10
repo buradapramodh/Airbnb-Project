@@ -103,6 +103,8 @@ app.use((req, res, next) => {
   console.log("<<========================END========================>>");
   next();
 });
+console.log("MONGO_URL:", process.env.MONGO_URL);
+console.log("MAP_TOKEN:", process.env.MAP_TOKEN);
 
 app.use("/", userRouter);
 app.use("/profile", profileRouter);
