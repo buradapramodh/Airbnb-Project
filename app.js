@@ -23,7 +23,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 // const MONGO_URL = "mongodb://127.0.0.1:27017/Airbnb";
-const DB_URL = process.env.ATLASDB_URL;
+const DB_URL = process.env.MONGO_URL;
 main()
   .then(() => {
     console.log("connected to DB");
@@ -35,8 +35,9 @@ async function main() {
   await mongoose.connect(DB_URL);
 }
 
-app.listen(8080, () => {
-  console.log("server is listening to port 8080");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 app.set("view engine", "ejs");
@@ -47,7 +48,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public/")));
 
 const store = MongoStore.create({
-  mongoUrl: DB_URL,
+  mongoUrl: DB_URL,       
   crypto: {
     secret: process.env.SECRET,
   },
