@@ -1,106 +1,74 @@
-# Airbnb-Inspired Full-Stack Web Application 🚀
+🏠 Airbnb Clone – Full Stack Web Application
 
-<p align="center">
-  <b style="color: blue;  ">Visitor count</b>
-  <br>
-  <a style="" href="https://github.com/buradapramodh">
-  <img src="https://profile-counter.glitch.me/Airbnb--Project/count.svg" />
-  </a>
-</p>
+A full-stack Airbnb-like rental booking platform that allows users to browse, create, edit, and manage property listings with location-based features, authentication, and image uploads.
 
----
+🔗 Live Demo: (add your Render live link here)
+🔗 GitHub Repo: (this repo)
+🚀 Features
 
-## Table of Contents
+🔐 User Authentication (Signup / Login / Logout)
 
--   [Project Overview](#project-overview)
--   [Technologies & Packages Used](#technologies--packages-used)
--   [Key Features](#key-features)
--   [Challenges & Solutions](#challenges--solutions)
--   [Special Thanks](#special-thanks)
--   [Author](#author)
--   [Project Link](#project-link)
--   [Thank You](#thank-you)
+🏡 Create, Edit & Delete Property Listings
 
+🖼 Image Upload with Cloudinary
 
-## Project Overview
+🌍 Location Geocoding using Mapbox
 
-Excited to share my journey of developing a feature-rich full-stack web application inspired by Airbnb. The project is built using MongoDB, Express.js, and Node.js.
+🗺 Interactive Maps for Listings
 
-## Technologies & Packages Used
+🔎 Search & Filter Listings
 
-### Backend
+💬 Flash Messages for Actions
 
--   **MongoDB**: NoSQL database for flexible and scalable data storage.
--   **Express.js**: Web application framework for Node.js, providing robust features for web and mobile applications.
--   **Node.js**: JavaScript runtime for server-side development.
+🧾 Session-based Authentication
 
-### Authentication
+📱 Fully Responsive UI
+🛠 Tech Stack
+Frontend
 
--   **Passport.js**: Middleware for user authentication, supporting various strategies.
--   **Dotenv**: Environment variable management for secure configuration.
+EJS (Embedded JavaScript Templates)
 
-### Image Storage
+HTML5, CSS3, Bootstrap
 
--   **Cloudinary**: Cloud-based image and video management solution.
+JavaScript
 
-### Maps
+Backend
 
--   **Mapbox**: Platform for custom maps and location-based experiences.
+Node.js
 
-### Frontend
+Express.js
 
--   **EJS**: Embedded JavaScript templates for dynamic content rendering.
+MongoDB & Mongoose
 
-### Session Management
+Passport.js (Authentication)
 
--   **Connect Flash**: Middleware for flash messages.
--   **Connect Mongo**: MongoDB session store for Express.js.
--   **Cookie Parser**: Middleware for parsing cookies.
+Cloud & Tools
 
-### Validation
+MongoDB Atlas (Database)
 
--   **Joi**: Library for data validation.
+Cloudinary (Image Storage)
 
-### Object Modeling
-
--   **Mongoose**: MongoDB object modeling for Node.js.
-
-### File Uploads
-
--   **Multer**: Middleware for handling file uploads.
-
-### Social Authentication
-
--   **Passport Local**: Local authentication strategy.
--   **Passport Facebook**: Facebook authentication strategy.
--   **Passport Google OAuth20**: Google OAuth2.0 authentication strategy.
--   **Passport Local Mongoose**: Mongoose-specific authentication strategy.
-    Authentication
-
-## Key Features
-
--   **User Authentication:** Login, Logout, and User Profile Section
--   **CRUD Operations:** Add, Edit, and Delete Listings
--   **Review System:** Add and Delete Reviews
--   **Account Management:** Update User Account and Password
--   **User Data Security:** Password Hashing and Encryption
--   **Interactive Maps:** Leveraging Mapbox for Location Visualization
--   **Login with Google:** Authenticate with your Google account for a seamless experience
--   **Login with Facebook:** Easily log in using your Facebook credentials
--   **Login with Email:** Traditional email login for user convenience
-
-## Challenges & Solutions
-
-Encountered challenges, especially with data handling, but implemented efficient solutions. Overcame scalability issues with a well-architected backend.
-
-## Author
-
-Pramodh Sai Burada \
-Email: buradapramodhsai16@gmail.com \
-
-## Thank You
-
-Thank you for exploring Airbnb! Your feedback is valuable. If you have any suggestions or thoughts, feel free to share them with us. 😊
-
----
-### Thanks for visit... 😊😊😊
+Mapbox (Geocoding & Maps)
+📂 Project Structure
+Render (Deployment)
+├── controllers/
+├── models/
+├── routers/
+├── views/
+│   ├── includes/
+│   ├── layouts/
+│   └── listings/
+├── public/
+│   ├── css/
+│   ├── js/
+│   └── Icon/
+├── utils/
+├── middleware.js
+├── app.js
+├── package.json
+└── README.md
+⚙️ Environment Variables
+MONGO_URL=your_mongodb_connection_string
+MAP_TOKEN=your_mapbox_public_token
+SECRET=your_session_secret
+NODE_ENV=production
